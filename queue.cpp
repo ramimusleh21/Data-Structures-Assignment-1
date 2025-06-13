@@ -10,6 +10,7 @@ vector<string> usernameList;
 
 int main(void) {
 	srand(time(0));
+	bool ProgramOn = true;
 
 	QUEUE* queue = initializeQueue();
 
@@ -33,7 +34,7 @@ int main(void) {
 	if (QueueLimit > 20) {
 		QueueLimit = 20;
 	}
-	else if(QueueLimit < 1) {
+	else if (QueueLimit < 1) {
 		QueueLimit = 5;
 	}
 
@@ -41,8 +42,11 @@ int main(void) {
 	cin.ignore();
 	Pause();
 
-	for (int i = 1; i <= QueueLimit; i++) {
-		Enqueue(queue);
+	for (int i = 0; i < QueueLimit; i++) {
+		ProgramOn = Enqueue(queue);
+		if (ProgramOn = false){
+			exit(EXIT_FAILURE);
+		}
 	}
 	cout << endl;
 	cout << QueueLimit << " Users Created" << endl;
@@ -57,9 +61,8 @@ int main(void) {
 	}
 
 	Pause();
-
-	bool ProgramOn = true;
 	int choice;
+	ProgramOn = true;
 
 	while (ProgramOn) {
 		cout << "\n *** MAIN MENU ***\n" << endl;

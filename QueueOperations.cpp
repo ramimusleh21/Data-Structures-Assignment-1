@@ -24,12 +24,12 @@ int QueueSize(QUEUE& Q) {
 	return Q.size;
 }
 
-void Enqueue(QUEUE* Q) {
+bool Enqueue(QUEUE* Q) {
 	NODE* newNode = new NODE();
 
 	if (newNode == NULL) {
 		perror("Error: Could Not Allocate Space");
-		exit(EXIT_FAILURE);
+		return false;
 	}
 
 	newNode->user.username = ChooseUserName();
@@ -53,6 +53,7 @@ void Enqueue(QUEUE* Q) {
 
 	}
 	Q->size++;
+	return true;
 }
 
 

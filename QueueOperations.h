@@ -3,7 +3,7 @@
 
 Queue* initializeQueue();
 
-void Enqueue(QUEUE* Q);
+bool Enqueue(QUEUE* Q);
 
 void Dequeue(QUEUE* Q, int selection);
 
