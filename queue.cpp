@@ -6,6 +6,8 @@
 
 using namespace std;
 
+vector<string> usernameList;
+
 int main(void) {
 	srand(time(0));
 
@@ -35,14 +37,26 @@ int main(void) {
 		QueueLimit = 5;
 	}
 
+	cout << "\nThe users are about to be created, wish to proceed?" << endl;
+	cin.ignore();
+	Pause();
+
 	for (int i = 1; i <= QueueLimit; i++) {
 		Enqueue(queue);
 	}
+	cout << endl;
+	cout << QueueLimit << " Users Created" << endl;
+	cout << "The Queue Limit is " << QueueLimit << endl;
+	cout << endl;
 
-	cout << endl;
-	cout << QueueLimit << " User(s) Created" << endl;
-	cout << "The Queue Limit is "  << QueueLimit << endl;
-	cout << endl;
+	cout << "The users are about to be deleted..." << endl;
+	Pause();
+
+	while (queue->head) {
+		Pop(queue);
+	}
+
+	Pause();
 
 	bool ProgramOn = true;
 	int choice;
@@ -72,11 +86,26 @@ int main(void) {
 			}
 			break;
 
-		case 2: 
+		case 2: {
 			cout << "\n\n*** REMOVE FROM QUEUE ***\n";
-			Dequeue(queue);
-			break;
 
+			cout << "\n  ** USERS **" << endl;
+			NODE* node = queue->head;
+
+			int count = 0;
+			while (node) {
+				count++;
+				cout << count << ": ";
+				PrintUserName(node);
+				node = node->next;
+			}
+
+			int selection;
+			cout << "Which User Would You Like To Delete (Select The Matching Number): ";
+			cin >> selection;
+			Dequeue(queue, selection);
+			break;
+		}
 		case 3:
 			cout << "\n\n*** PEEK ***\n";
 			Peek(queue->head);

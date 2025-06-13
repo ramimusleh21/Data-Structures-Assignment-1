@@ -18,4 +18,8 @@ string SelectRandomNumber();
 
 int ChooseLvl();
 
+void Pause();
+
 string SelectRandomNamePart(string* list);
+
+bool CompareNames(string newName);

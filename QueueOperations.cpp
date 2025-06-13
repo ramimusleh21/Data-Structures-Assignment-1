@@ -36,7 +36,13 @@ void Enqueue(QUEUE* Q) {
 	newNode->user.lvl = ChooseLvl();
 	newNode->user.faction = ChooseFaction();
 	newNode->next = NULL;
-	
+
+	while (CompareNames(newNode->user.username)) {
+		newNode->user.username = ChooseUserName();
+	}
+
+	usernameList.push_back(newNode->user.username);
+
 	if (IsEmpty(Q)) {
 		Q->head = newNode;
 		Q->tail = newNode;
@@ -63,7 +69,26 @@ void Peek(NODE* node) {
 
 }
 
-void Dequeue(QUEUE* Q) {
+void Pop(Queue* Q) {
+	cout << endl;
+
+	if (Q->head == NULL) {
+		cout << "Queue is empty" << endl;
+		return;
+	}
+
+	NODE* node = Q->head;
+
+	while (node) {
+		PrintUser(node);
+		NODE* temp = node;
+		node = node->next;
+		Dequeue(Q, 1);
+	}
+	cout << "\n***All Users Removed***" << endl;
+}
+
+void Dequeue(QUEUE* Q, int selection) {
 
 	if (IsEmpty(Q)) {
 		cout << "Queue is empty" << endl;
@@ -71,19 +96,11 @@ void Dequeue(QUEUE* Q) {
 	}
 
 	NODE* node = Q->head;
-
-	cout << "\n  ** USERS **" << endl;
 	int count = 0;
 	while (node) {
 		count++;
-		cout << count << ": ";
-		PrintUserName(node);
 		node = node->next;
 	}
-
-	int selection;
-	cout << "Which User Would You Like To Delete (Select The Matching Number): ";
-	cin >> selection;
 
 	if (selection > count) {
 		cout << "\nThere are only " << count << " users" << endl;

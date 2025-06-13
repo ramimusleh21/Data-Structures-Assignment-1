@@ -1,10 +1,13 @@
 #pragma once
 #include <vector>
 
+
 const int NameListSize = 20;
 
 
 using namespace std;
+
+extern vector<string> usernameList;
 
 enum faction { red = 1, blue = 2, green = 3 };
 typedef faction FACTION;
@@ -29,6 +32,5 @@ typedef struct Queue {
 	NODE* head;
 	NODE* tail;
 	int size;
-	vector <string> usernameList;
 
 }QUEUE;

@@ -1,9 +1,12 @@
 #include <iostream>
 #include "globals.h"
 #include <cstdlib>
+#include <vector>
+#include <algorithm>
 #include <string>
 
 using namespace std;
+
 
 FACTION ChooseFaction() {
 	int RandomFaction = (rand() % 3) + 1;
@@ -115,3 +118,11 @@ int ChooseLvl() {
 	return (rand() % 60) + 1;
 }
 
+void Pause() {
+	cout << "Press Enter to continue...";
+	cin.get();
+}
+
+bool CompareNames(string newName) {
+	return find(usernameList.begin(), usernameList.end(), newName) != usernameList.end();
+}
